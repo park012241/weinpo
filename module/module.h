@@ -12,7 +12,7 @@
 
 #define IIC_ADDR 0x23
 
-float float finedust_sensor();
+float finedust_sensor();
 float finedust_sensor_raw();
 char dht_hum_mapping(int data);
 char dht_temp_mapping(int data);
@@ -21,6 +21,6 @@ char dht11_temp_sensor();
 char dht11_hum_sensor_raw();
 char dht11_temp_sensor_raw();
 void BH1750_sensor_init(int addr);
-int BH1750_sensor_read(int addr, byte *buf);
+int BH1750_sensor_read(int addr, char *buf);
 char BH1750_sensor();
 char BH1750_sensor_raw();

@@ -1,7 +1,7 @@
 #include "module.h"
 #include "MegunoLink/MegunoLink.h"
 #include "MegunoLink/Filter.h"
-#include "DHT11/DHT.h"
+#include <DHT.h>
 #include <Wire.h>
 #include <math.h>
 
@@ -125,7 +125,7 @@ char dht11_hum_sensor(){
   int hum = 0, filted_hum = 0;  
   int count = 0, val = 0; 
 
-  DHT dht(DHT_INPUT_DATA, DHT_TYPE);
+  DHT dht((unsigned char)DHT_INPUT_DATA, (unsigned char)DHT_TYPE);
   ExponentialFilter<long> ADCFilter(3, 0); //filter setting (weight value: 3)
   
   while(count < WAIT){
@@ -224,7 +224,7 @@ char BH1750_sensor(){
   ExponentialFilter<long> ADCFilter(3, 0); //filter setting (weight value: 3)
   Wire.begin();
   
-  BH1705_sensor_init(IIC_ADDR);
+  BH1750_sensor_init(IIC_ADDR);
   delay(200);
 
   while(count < WAIT){
@@ -248,7 +248,7 @@ char BH1750_sensor_raw(){
   ExponentialFilter<long> ADCFilter(3, 0); //filter setting (weight value: 3)
   Wire.begin();
   
-  BH1705_sensor_init(IIC_ADDR);
+  BH1750_sensor_init(IIC_ADDR);
   delay(200);
 
   while(count < WAIT){
