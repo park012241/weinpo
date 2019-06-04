@@ -6,7 +6,11 @@ T command(byte command, T data) {
     SPI.transfer(command);
     delay(0.5);
     byte buf[sizeof(T)] = {0,};
-    SPI.transfer(buf, sizeof(T));
+
+    for (int i = 0; i < sizeof(T); i++) {
+        buf[i] = SPI.transfer(0);
+    }
+
     digitalWrite(SS, HIGH);
 
     for (int i = 0; i < sizeof(T); i++) {
@@ -24,6 +28,6 @@ void setup(void) {
 
 void loop(void) {
     char a;
-    Serial.println(command(0x06, a));
+    Serial.println((int) command(0x06, a));
     delay(0.5);
 }
